@@ -49,9 +49,24 @@ ping -c 4 192.168.48.102
 Then typing in `icmp` filter in Wireshark and looking up for ping being registered
 
 ![wsping](screenshots/wsping.png)
+Seeing 8 lines sorted by ICMP protocol, 4 stands for main>sub ping, 4 stands for sub>main replies 
 
-## Filtering 
-## Locating packets 
+---
+Now enabling test server on port 8000 on subvm and trying to curl it from mainvm
+
+![enablingserv](screenshots/servstartup.png)
+
+```
+python3 -m http.server 8000
+```
+Then renewing capture on Wireshark 
+
+![newcapture](screenshots/newcapture.png)
+
+And trying to curl (+ applying `tcp.port` filter in WS)
+
+![wscurl](screenshots/curling.png)
+As a result, Wireshark captured 4 SYN signals, no ACK at all 
 
 ## Problems and conclusions
 Problems:
