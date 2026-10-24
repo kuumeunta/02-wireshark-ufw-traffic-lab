@@ -1,4 +1,4 @@
-# xx-template-lab
+# 02-wireshark-ufw-traffic-lab
 
 ## Goal
 
