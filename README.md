@@ -6,8 +6,8 @@ Capturing packets with Wireshark when connecting to opened and closed ports.
 
 ## Environment
 - Host: Windows 10, VirtualBox 7.2.22
-- VM1: Ubuntu 26.04, name: UbuntuMain, IP 192.168.56.101
-- VM2: Ubuntu 26.04, name: UbuntuSub, IP 192.168.56.102
+- VM1: Ubuntu 26.04, name: mainvm, IP 192.168.56.101
+- VM2: Ubuntu 26.04, name: subvm, IP 192.168.56.102
 - Network: Host-Only
 
 ## Wireshark installation and setup
@@ -39,8 +39,17 @@ Interface named `enp0s8` has an ip 192.168.56.101, so i'll capture it's traffic
 
 ![aplliedws](screenshots/wsinterface.png)
 
-
 ## Ping capturing and analysis
+Verifying that ufw on subvm still works, checking up that ip still the same, then ping subvm from mainvm
+
+![ping](screenshots/pings.png)
+```
+ping -c 4 192.168.48.102
+```
+Then typing in `icmp` filter in Wireshark and looking up for ping being registered
+
+![wsping](screenshots/wsping.png)
+
 ## Filtering 
 ## Locating packets 
 
