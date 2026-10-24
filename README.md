@@ -51,7 +51,7 @@ Then typing in `icmp` filter in Wireshark and looking up for ping being register
 ![wsping](screenshots/wsping.png)
 Seeing 8 lines sorted by ICMP protocol, 4 stands for main>sub ping, 4 stands for sub>main replies 
 
----
+## Connecting to locked tcp port
 Now enabling test server on port 8000 on subvm and trying to curl it from mainvm
 
 ![enablingserv](screenshots/servstartup.png)
@@ -66,8 +66,28 @@ Then renewing capture on Wireshark
 And trying to curl (+ applying `tcp.port` filter in WS)
 
 ![wscurl](screenshots/curling.png)
+```
+curl --max-time 5 192.168.56.102:8000
+```
 As a result, Wireshark captured 4 SYN signals, no ACK at all 
 
+## Connecting to allowed tcp port
+Now restarting test server, this time with ufw allowed tcp on 8000 port
+
+![tcpallowed](screenshots/allowedtcp.png)
+```
+sudo ufw allow 8000/tcp
+python3 -m http.server 8000
+```
+Then re-enabling Wireshark capturing again and trying to curl
+![re-curl](screenshots/curlagain.png)
+```
+curl --max-time 5 192.168.56.102:8000
+```
+Terminal shows up HTML of test server. Checking up WS capture
+![wsrecapt](screenshots/synack.png)
+
+Wireshark shows up few lines that contains both SYN and ACK, so in conclusion we have connection established.
 ## Problems and conclusions
 Problems:
 
