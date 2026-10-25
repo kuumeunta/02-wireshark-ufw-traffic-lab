@@ -89,7 +89,7 @@ And trying to curl (+ applying `tcp.port` filter in WS)
 curl --max-time 5 192.168.56.102:8000
 ```
 
-As a result, captured 4 SYN packets (retransmissions of the same connection attempt) and no SYN-ACK in reply at all
+As a result, captured SYN packets (retransmissions of the same connection attempt) and no SYN-ACK in reply at all
 
 ## Connecting to an open TCP port (allowed in ufw)
 
